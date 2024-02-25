@@ -61,7 +61,8 @@ add_ore("default:stone_with_copper", "default:desert_stone", 9*9*9, 5, 3, -31000
 -- Coral Sand
 add_ore("ethereal:sandy", "default:sand", 10*10*10, 24, 4, -100, -10)
 
--- Etherium
+-- regular Etherium
+--[[
 minetest.register_ore({
 	ore_type = "scatter",
 	ore = "ethereal:etherium_ore",
@@ -73,7 +74,7 @@ minetest.register_ore({
 	y_max = 40,
 	biomes = {"caves"}
 })
-
+--]]
 -- Etherium in floatlands
 minetest.register_ore({
 	ore_type = "scatter",

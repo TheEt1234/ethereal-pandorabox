@@ -30,11 +30,16 @@ minetest.register_craft({
 -- helper strings
 local tmp, tmp2
 
+
 -- helper function
 local add_biome = function(a, l, m, n, o, p, b, c, d, e, f, g, nd, na, ns)
 
 	-- if not 1 then biome disabled, don't add
 	if p ~= 1 then return end
+	
+	if not ethereal[a]==nil then
+		if ethereal[a]==0 or false then return end
+	end
 
 	minetest.register_biome({
 		name = a,
@@ -48,8 +53,8 @@ local add_biome = function(a, l, m, n, o, p, b, c, d, e, f, g, nd, na, ns)
 --		depth_water_top = i,
 --		node_water = j,
 --		node_river_water = k,
-		y_min = l,
-		y_max = m,
+		y_min = ethereal.Y_min,
+		y_max = ethereal.Y_max,
 		heat_point = n,
 		humidity_point = o,
 
@@ -58,7 +63,6 @@ local add_biome = function(a, l, m, n, o, p, b, c, d, e, f, g, nd, na, ns)
 		node_dungeon_stair = ns or "stairs:stair_cobble"
 	})
 end
-
 
 -- always registered biomes
 add_biome("mountain", 140, 31000, 50, 50, 1,

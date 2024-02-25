@@ -7,7 +7,12 @@
 ]]
 
 
-ethereal = {version = "20240125"}
+ethereal = {
+	version = "00242722",
+	Y_min=1000,
+	Y_max=30000,
+	default_y_max=1000,
+}
 
 
 local function setting(stype, name, default)
@@ -31,9 +36,10 @@ end
 
 
 -- DO NOT change settings below, use the settings.conf file instead
+-- freg learnt the hard way he should use settings.conf
 
 setting("number", "leaftype", 0)
-setting("bool", "leafwalk", false)
+setting("bool", "leafwalk", true)
 setting("bool", "cavedirt", true)
 setting("bool", "torchdrop", true)
 setting("bool", "papyruswalk", true)
@@ -49,7 +55,7 @@ setting("number", "snowy", 1)
 setting("number", "frost", 1)
 setting("number", "grassy", 1)
 setting("number", "caves", 1)
-setting("number", "grayness", 1)
+setting("number", "grayness",1)
 setting("number", "grassytwo", 1)
 setting("number", "prairie", 1)
 setting("number", "jumble", 1)
@@ -64,7 +70,7 @@ setting("number", "savanna", 1)
 setting("number", "fiery", 1)
 setting("number", "sandclay", 1)
 setting("number", "swamp", 1)
-setting("number", "sealife", 1)
+setting("number", "sealife",1)
 setting("number", "reefs", 1)
 setting("number", "sakura", 1)
 setting("number", "tundra", 1)
@@ -116,6 +122,7 @@ if minetest.settings:get_bool("ethereal.clear_default_biomes", true) then
 	dofile(path .. "/biomes_init.lua")
 end
 
+dofile(path .. "/purge_default_floatlands.lua")
 dofile(path .. "/biomes.lua")
 dofile(path .. "/ores.lua")
 dofile(path .. "/schems.lua")
