@@ -56,7 +56,7 @@ local def_biomes = {
 	["coniferous_forest_dunes"] = 1,
 	["coniferous_forest"] = 1,
 -- biomes added by me
-	["mountains"]=1,
+	["mountain"]=1,
 	["default"]=1,
 }
 

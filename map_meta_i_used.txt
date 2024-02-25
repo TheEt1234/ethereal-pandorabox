@@ -185,7 +185,7 @@ mg_biome_np_heat_blend = {
 }
 mgv7_floatland_taper = 256
 mgv7_float_taper_exp = 2
-mgv7_floatland_ymax = 31000
+mgv7_floatland_ymax = 20000
 mgv7_large_cave_flooded = 0.5
 mgv7_floatland_density = -0.300000012
 mgv7_cave_width = 0.0900000036

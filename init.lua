@@ -8,9 +8,9 @@
 
 
 ethereal = {
-	version = "00242722",
-	Y_min=1000,
-	Y_max=30000,
+	version = "20240125", -- moretrees will complain if anything else other than this is loaded
+	Y_min=18000,
+	Y_max=20000,
 	default_y_max=1000,
 }
 
@@ -152,6 +152,6 @@ end
 if minetest.get_modpath("xanadu") then
 	dofile(path .. "/plantpack.lua")
 end
-
+dofile(path .. "/vacuum.lua")
 
 print ("[MOD] Ethereal loaded")
