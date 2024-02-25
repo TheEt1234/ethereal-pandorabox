@@ -124,7 +124,7 @@ mg_flags = caves, dungeons, light, decorations, biomes, ores
 mg_name = v7
 mgv7_small_cave_num_max = 0
 mgv7_large_cave_num_max = 2
-mgv7_floatland_ymin = 1024
+mgv7_floatland_ymin = 18000
 chunksize = 5
 water_level = 1
 mapgen_limit = 31007
@@ -171,7 +171,7 @@ mg_biome_np_humidity = {
 	offset = 50
 }
 mgv7_floatland_ywater = -31000
-seed = 18000654445967578842
+seed = 16225984431252982444
 mgv7_dungeon_ymax = 31000
 mg_biome_np_heat_blend = {
 	flags = defaults
