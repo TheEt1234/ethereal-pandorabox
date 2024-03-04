@@ -3,6 +3,10 @@ minetest mod ethereal NG
 
 ## Information
 --------------
+This is a modified fork of ethereal intended for use in pandorabox
+It limits the ethereal biomes to a certain Y level range
+If you are going to use the multitools mod, please use https://github.com/TheEt1234/multitools/ or rip out the ethereal multitool in your own fork
+
 
 This mod is named `ethereal`, it produces huge amount of new biomes
 overriding defaults, many new items and features that spice up gameplay.

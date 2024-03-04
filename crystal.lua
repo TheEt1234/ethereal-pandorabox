@@ -223,26 +223,66 @@ minetest.register_craft({
 	}
 })
 
-
--- dig override for crystal shovel's silk touch ability
+local function string_starts(string,start)
+	return string.sub(string,1,string.len(start))==start
+ end
+-- dig override for crystal's silk touch ability
 local old_handle_node_drops = minetest.handle_node_drops
 
+local tools ={
+	["ethereal:shovel_crystal"]=true,
+	["ethereal:pick_crystal"]=true,
+	["ethereal:axe_crystal"]=true,
+	["ethereal:sword_crystal"]=true,
+	["ethereal:multitool_crystal"]=true,
+}
 function minetest.handle_node_drops(pos, drops, digger)
 
-	-- are we holding Crystal Shovel?
-	if not digger
-	or digger:get_wielded_item():get_name() ~= "ethereal:shovel_crystal" then
+	-- are we holding crystal stuff?
+	local item_name=digger:get_wielded_item():get_name()
+	if not digger or not tools[item_name] then
 		return old_handle_node_drops(pos, drops, digger)
 	end
 
 	local nn = minetest.get_node(pos).name
 
-	if minetest.get_item_group(nn, "crumbly") == 0
+	if minetest.get_item_group(nn,"not_in_creative_inventory") == 1
 	or minetest.get_item_group(nn, "no_silktouch") == 1 then
+		return old_handle_node_drops(pos, drops, digger)
+	end
+	
+	if minetest.get_item_group(nn, "soil") == 0
+	and not (
+		string_starts(nn,"default:")
+		or string_starts(nn,"ethereal:")
+		or string_starts(nn,"moreores:")
+		or string_starts(nn,"technic:mineral")
+	)
+	then
 		return old_handle_node_drops(pos, drops, digger)
 	end
 
 	return old_handle_node_drops(pos, {ItemStack(nn)}, digger)
+end
+
+-- re-register the crystal multitool under a different name
+-- this is because the original behaviour is problematic (allows silk touching of nodes you don't really want players obtaining...)
+if multitools then
+	minetest.unregister_item("multitools:multitool_crystal")
+
+	multitools.register_multitool("ethereal", "crystal", S("Crystal Multitool"), "multitool_crystal.png", 8.0,{
+		full_punch_interval = 0.9,
+		max_drop_level = 3,
+		groupcaps = {
+		cracky = {times={[1]=1.8, [2]=0.8, [3]=0.40}, uses=20, maxlevel=3},
+		crumbly = {times={[1]=0.70, [2]=0.35, [3]=0.20}, uses=50, maxlevel=2},
+		choppy = {times={[1]=1.75, [2]=0.45, [3]=0.45}, uses=50, maxlevel=2},
+		snappy = {times={[1]=1.70, [2]=0.70, [3]=0.25}, uses=50, maxlevel=3},
+		},
+		damage_groups = {fleshy=10},
+	},
+	{breaks = "default_tool_breaks"}
+	)
 end
 
 minetest.register_tool("ethereal:shovel_crystal", {
